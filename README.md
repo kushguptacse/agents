@@ -1,6 +1,9 @@
 # agents
 Project covers basic agentic flow example using qwen3 LLM and exposes LLM endpoint for further usage
 
+1. AI agents are systems where LLMs dynamically direct their own processes and tool usage, maintaining control over how they accomplish tasks.
+
+2. AI agentic solutions have some characterstics - Multiple LLM calls, LLM uses tools, autonomous decision making.
 
 ## Project File Overview
 
