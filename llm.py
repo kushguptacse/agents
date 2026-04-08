@@ -5,19 +5,24 @@ import openai
 openai.api_key = CHAT_COMPLETIONS_API_KEY
 openai.base_url = API_URL
 
-def call_chat_api(messages):
+def call_chat_api(messages, disable_reasoning=True):
     """
     Calls the LLM API with tools for function calling using OpenAI library.
     Returns the message object that may contain tool calls.
     """
     p = json.dumps(messages)
     print("DEBUG", f"Prompt Length: {len(p)}")
+    extra_body: dict = {
+    }
+    if disable_reasoning:
+        extra_body['reasoning_effort'] = 'none'
     try:
         response = openai.chat.completions.create(
-            model= LLM_MODEL_NAME,
+            model=LLM_MODEL_NAME,
             messages=messages,
             temperature=LLM_TEMPERATURE,
             max_tokens=MAX_TOKEN,
+            extra_body= extra_body
         )
         
         message = response.choices[0].message
