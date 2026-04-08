@@ -1,5 +1,5 @@
 # agents
-some solutions and learning related to ai agents
+Project covers basic agentic flow example using qwen3 LLM and exposes LLM endpoint for further usage
 
 
 ## Project File Overview

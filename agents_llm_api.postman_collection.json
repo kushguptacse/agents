@@ -1,0 +1,39 @@
+{
+  "info": {
+    "_postman_id": "b1e2c1a0-1234-4cde-9abc-abcdef123456",
+    "name": "Agents LLM API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Chat Completions (OpenAI Compatible)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Hello, what can you do?\"\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8300/v1/chat/completions",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8300",
+          "path": [
+            "v1",
+            "chat",
+            "completions"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
