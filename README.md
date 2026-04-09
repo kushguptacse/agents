@@ -16,7 +16,7 @@ Project covers basic agentic flow example using qwen3 LLM and exposes LLM endpoi
 2. AI agentic solutions have some characterstics - Multiple LLM calls, LLM uses tools, autonomous decision making.
 
 
-# Design Patterns in LLM Applications
+# Design Patterns in Agentic Application
 
 ---
 
@@ -192,18 +192,6 @@ Use this pattern when output quality matters and iterative refinement is valuabl
 
 ### Limitation
 - Higher latency and cost due to iterative loops
-
----
-
-# Quick Comparison
-
-| Pattern | Main Idea | Best For | Control Type |
-|---------|-----------|----------|--------------|
-| Prompt Chaining | Sequential LLM steps | Multi-stage tasks | Mostly fixed |
-| Routing | Choose best path/tool/model | Multi-capability systems | Fixed or dynamic |
-| Parallelization | Run independent tasks concurrently | Speed and scalability | Mostly fixed |
-| Orchestrator-Worker | LLM plans and delegates work | Complex open-ended tasks | Dynamic |
-| Evaluator-Optimizer | Generate, review, and improve iteratively | Quality-sensitive tasks | Iterative |
 
 ---
 
