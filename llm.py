@@ -25,12 +25,11 @@ def call_chat_api(messages, disable_reasoning=True):
             extra_body= extra_body
         )
         
-        message = response.choices[0].message
         usage = getattr(response, 'usage', None)
         if usage:
             print("DEBUG", f"Usage of LLM API: {usage}")
         
-        return message
+        return response
         
     except Exception as e:
         print("ERROR", f"Error calling LLM API with tools: {e}")

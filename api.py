@@ -10,28 +10,11 @@ app = FastAPI()
 async def chat_completions(request: Request):
     payload = await request.json()
     messages = payload.get("messages", [])
-    # Optionally pass through other OpenAI-compatible params
     response = call_chat_api(messages)
     if response is None:
         return JSONResponse(status_code=500, content={"error": "LLM call failed"})
     # Return OpenAI-compatible response structure
-    return JSONResponse(content={
-        "id": "chatcmpl-xxx",
-        "object": "chat.completion",
-        "created": 0,
-        "model": LLM_MODEL_NAME,
-        "choices": [
-            {
-                "index": 0,
-                "message": {
-                    "role": "assistant",
-                    "content": response.content if hasattr(response, "content") else str(response)
-                },
-                "finish_reason": "stop"
-            }
-        ],
-        "usage": getattr(response, 'usage', None)
-    })
+    return response
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=PORT)
