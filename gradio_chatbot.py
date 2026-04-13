@@ -29,7 +29,14 @@ system_prompt += f"With this context, please chat with the user, always staying 
 def chat(message, history):
     messages = [{"role": "system", "content": system_prompt}] + history + [{"role": "user", "content": message}]
     response = call_chat_api(messages=messages)
-    return response.choices[0].message.content
+    if response is None:
+        return "Sorry, I could not get a response from the LLM."
+
+    choices = getattr(response, "choices", None)
+    if not choices:
+        return "Sorry, I could not get a valid response from the LLM."
+
+    return choices[0].message.content
 
 if __name__ == "__main__":
     gr.ChatInterface(chat).launch()
