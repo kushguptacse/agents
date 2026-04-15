@@ -38,7 +38,7 @@ def sanitize_messages(messages):
     return sanitized
 
 
-def call_chat_api(messages, disable_reasoning=True):
+def call_chat_api(messages, tools=[], disable_reasoning=True):
     """
     Calls the LLM API with tools for function calling using OpenAI library.
     Returns the response object or None on failure.
@@ -55,6 +55,7 @@ def call_chat_api(messages, disable_reasoning=True):
         response = openai.chat.completions.create(
             model=LLM_MODEL_NAME,
             messages=messages,
+            tools=tools,
             temperature=LLM_TEMPERATURE,
             max_tokens=MAX_TOKEN,
             extra_body=extra_body,

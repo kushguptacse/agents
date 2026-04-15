@@ -10,7 +10,9 @@ app = FastAPI()
 async def chat_completions(request: Request):
     payload = await request.json()
     messages = payload.get("messages", [])
-    response = call_chat_api(messages)
+    tools = payload.get("tools", [])
+    
+    response = call_chat_api(messages, tools=tools)
     if response is None:
         return JSONResponse(status_code=500, content={"error": "LLM call failed"})
     # Return OpenAI-compatible response structure
