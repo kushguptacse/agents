@@ -86,6 +86,9 @@ def chat(message, history):
     return answer
 
 
-
 if __name__ == "__main__":
-    gr.ChatInterface(chat).launch()
+    with gr.Blocks() as demo:
+        gr.Markdown("## 💬 Chat Assistant")
+        gr.ChatInterface(fn=chat)
+
+    demo.launch()
