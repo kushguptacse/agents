@@ -23,4 +23,4 @@ def push(message):
     payload = {"user": pushover_user, "token": pushover_token, "message": message}
     requests.post(pushover_url, data=payload)
 
-push("hello")
+#push("hello")
