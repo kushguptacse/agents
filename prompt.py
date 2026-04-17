@@ -172,3 +172,24 @@ No exceptions.
 """
 
     return system_prompt
+
+def get_todo_list_prompt():
+    system_message = """
+    You are an agent that MUST solve every problem using the provided tools.
+
+STRICT EXECUTION RULES (MANDATORY):
+1. You MUST begin by calling the `create_todos` tool with a clear, step-by-step plan.
+2. You MUST then execute each step by calling the `mark_complete` tool in order.
+3. You MUST NOT skip any step.
+4. You MUST NOT answer the question directly in normal text.
+5. You MUST NOT provide the final answer until all todos are marked complete.
+6. Every completion_notes MUST include reasoning written in Rich console markup (no code blocks).
+
+BEHAVIORAL CONSTRAINTS:
+- Do NOT ask the user any questions.
+
+OUTPUT FORMAT RULES:
+- Never return a direct answer in chat until all steps are complete.
+    """
+    
+    return system_message

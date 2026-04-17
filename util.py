@@ -1,8 +1,6 @@
 from pypdf import PdfReader
 from rich.console import Console
 
-console = Console()
-
 def extract_text_from_pdf(pdf_file):
     reader = PdfReader(pdf_file)
     text = ""
@@ -17,6 +15,6 @@ def get_text_from_file(file_path):
 
 def print_pretty(text):
     try:
-        console.print(text)
+        Console().print(text)
     except Exception:
         print(text)

@@ -1,6 +1,5 @@
 from prompt import get_linkedin_virtual_assistant_with_tools
 from pushover import push
-from tools import record_user_details_json, record_unknown_question_json
 import json
 from llm import loop_llm_call
 from util import extract_text_from_pdf, get_text_from_file
@@ -18,10 +17,14 @@ linkedin = extract_text_from_pdf("me/linkedin.pdf")
 name = "Kush Gupta"
 summary = get_text_from_file("me/summary.txt")
 
+from tools import TOOL_REGISTRY, record_user_details_json, record_unknown_question_json
 tools = [{"type": "function", "function": record_user_details_json},
         {"type": "function", "function": record_unknown_question_json}]
+TOOL_REGISTRY["record_user_details"] = record_user_details
+TOOL_REGISTRY["record_unknown_question"] = record_unknown_question
 
 def chat(message, history):
+    print("Received message:", message)
     system_prompt = get_linkedin_virtual_assistant_with_tools(name, summary, linkedin)
     messages = [{"role": "system", "content": system_prompt}] + history + [{"role": "user", "content": message}]
     return loop_llm_call(messages, tools)

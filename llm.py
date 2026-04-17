@@ -47,7 +47,7 @@ def call_chat_api(messages, tools=[], disable_reasoning=True):
     """
     messages = sanitize_messages(messages)
     payload = json.dumps(messages)
-    print("DEBUG", f"Prompt Length: {len(payload)}")
+    #print("DEBUG", f"Prompt Length: {len(payload)}")
 
     extra_body: dict = {}
     if disable_reasoning:
@@ -64,8 +64,8 @@ def call_chat_api(messages, tools=[], disable_reasoning=True):
         )
 
         usage = getattr(response, "usage", None)
-        if usage:
-            print("DEBUG", f"Usage of LLM API: {usage}")
+        # if usage:
+        #     print("DEBUG", f"Usage of LLM API: {usage}")
 
         return response
     except Exception as e:
@@ -73,7 +73,6 @@ def call_chat_api(messages, tools=[], disable_reasoning=True):
         return None
 
 def loop_llm_call(messages, tools=[]):
-    print("Received message:", message)
     
     done = False
     while not done:
