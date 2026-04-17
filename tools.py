@@ -1,3 +1,6 @@
+import json
+
+
 record_user_details_json = {
     "name": "record_user_details",
     "description": "Use this tool to record that a user is interested in being in touch and provided an email address",
@@ -38,3 +41,14 @@ record_unknown_question_json = {
         "additionalProperties": False
     }
 }
+
+def handle_tool_call(tool_calls)-> dict:
+    results=[]
+    for tool_call in tool_calls:
+        tool_name = tool_call.function.name
+        arguments = json.loads(tool_call.function.arguments)
+        print(f"Tool called: {tool_name}", flush=True)
+        tool = globals().get(tool_name)
+        result = tool(**arguments) if tool else {}
+        results.append({"role": "tool","content": json.dumps(result),"tool_call_id": tool_call.id})
+    return {"results": results}

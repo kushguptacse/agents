@@ -2,6 +2,8 @@ import json
 from config import API_URL, CHAT_COMPLETIONS_API_KEY, LLM_MODEL_NAME, LLM_TEMPERATURE, MAX_TOKEN
 import openai
 
+from tools import handle_tool_call
+
 openai.api_key = CHAT_COMPLETIONS_API_KEY
 openai.base_url = API_URL
 
@@ -69,3 +71,21 @@ def call_chat_api(messages, tools=[], disable_reasoning=True):
     except Exception as e:
         print("ERROR", f"Error calling LLM API with tools: {e}")
         return None
+
+def loop_llm_call(messages, tools=[]):
+    print("Received message:", message)
+    
+    done = False
+    while not done:
+        response = call_chat_api(messages=messages, tools=tools, disable_reasoning=True)
+        finish_reason = response.choices[0].finish_reason
+        
+        if finish_reason=="tool_calls":
+            message = response.choices[0].message
+            tool_calls = message.tool_calls
+            results = handle_tool_call(tool_calls)
+            #messages.append(message)
+            messages.extend(results["results"])
+        else:
+            done = True
+    return response.choices[0].message.content
