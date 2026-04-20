@@ -5,7 +5,16 @@
 - **llm.py**: Contains the logic to call the LLM (Qwen3/OpenAI-compatible) API.
 - **api.py**: Exposes the LLM as a REST API endpoint using FastAPI and Uvicorn, compatible with OpenAI payloads.
 - **simple_agent_flow.py**: Demonstrates a multi-step agentic workflow by calling the REST API endpoint and processing responses.
-- **README.md**: Project overview and file descriptions (this file).
+- **prompt.py**: Contains prompt templates and prompt management utilities for various agent workflows.
+- **tools.py**: Defines custom tools and functions available to agents for task execution.
+- **util.py**: Utility functions and helper methods used across the project.
+- **gradio_linkedin_chatbot.py**: Implements a LinkedIn-focused chatbot interface using Gradio for user interaction.
+- **evaluator_optmizer_pattern_linkedin_agent.py**: Implements evaluation and optimization patterns for LinkedIn agents.
+- **todo_list_performer.py**: Agent implementation for managing and performing tasks from a todo list.
+- **tools_testing_gradio.py**: Gradio-based interface for testing and demonstrating available tools.
+- **pushover.py**: Integration module for Pushover notifications and alerts.
+- **agents_llm_api.postman_collection.json**: Postman collection for testing and documenting API endpoints.
+- **me/summary.txt**: User profile or project summary information.
 
 
 # agents
