@@ -18,13 +18,19 @@ def ask_llm(question):
 # Step 1
 question1 = "pick one business area that might be worth exploring for an Agentic AI opportunity."
 answer1 = ask_llm(question1)
+print("\n" + "stage 1 answer:" , answer1)
+print("-------------------------------------------")
 
 # Step 2
 question2 = f"Using below business area,present a pain-point in the industry - something challenging that might be ripe for an Agentic solution. \n {answer1}"
 answer2 = ask_llm(question2)
+print("\n" + "stage 2 answer:" , answer2)
+print("-------------------------------------------")
 
 # Step 3
 question3 = f"Using below pain-point, brainstorm a potential Agentic AI solution to the pain point you identified. \n {answer2}"
 answer3 = ask_llm(question3)
+print("\n" + "stage 3 Final answer:" , answer3)
+print("-------------------------------------------")
 
-print("Final answer:", answer3)
+# print("Final answer:", answer3)

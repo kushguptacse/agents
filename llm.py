@@ -77,13 +77,16 @@ def loop_llm_call(messages, tools=[]):
     done = False
     while not done:
         response = call_chat_api(messages=messages, tools=tools, disable_reasoning=True)
+        if response is None:
+            return "Error: Failed to call LLM API. Please check your connection or API configuration."
+            
         finish_reason = response.choices[0].finish_reason
         
         if finish_reason=="tool_calls":
             message = response.choices[0].message
             tool_calls = message.tool_calls
             results = handle_tool_call(tool_calls)
-            #messages.append(message)
+            messages.append(message)
             messages.extend(results["results"])
         else:
             done = True

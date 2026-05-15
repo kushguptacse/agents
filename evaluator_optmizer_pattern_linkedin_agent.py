@@ -64,8 +64,8 @@ def chat(message, history):
     print("Received message:", message)
     system = linkedin_VA_system_prompt
     # if "aws" in message:
-    #     system = system + "\n\nEverything in your reply needs to be in pig latin - \
-    #           it is mandatory that you respond only and entirely in pig latin"
+    #     system = system + "\n\nEverything in your reply needs to be gibrish and junk- \
+    #           it is mandatory that you respond only and entirely in gibrish and junk"
         
     messages = (
         [{"role": "system", "content": system}]
